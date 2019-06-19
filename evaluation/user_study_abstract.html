@@ -1,0 +1,560 @@
+<!-- HIT template: ImageTagging-v3.0 --><!-- Bootstrap v3.0.3 --><!-- Please note that Bootstrap CSS/JS and JQuery are 3rd party libraries that may update their url/code at any time. Amazon Mechanical Turk (MTurk) is including these libraries as a default option for you, but is not responsible for any changes to the external libraries -->
+<link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" integrity="sha384-IS73LIqjtYesmURkDE9MXKbXqYA8rvKEp/ghicjem7Vc3mGRdQRptJSz60tvrB6+" rel="stylesheet" /><!-- The following snippet enables the 'responsive' behavior on smaller screens -->
+<meta content="width=device-width,initial-scale=1" name="viewport" /><!-- Instructions -->
+<section class="container" id="TaggingOfAnImage">
+<div class="row">
+<div class="col-xs-12 col-md-12"><!-- Instructions -->
+<div class="panel panel-primary"><!-- WARNING: the ids "collapseTrigger" and "instructionBody" are being used to enable expand/collapse feature --><a class="panel-heading" href="javascript:void(0);" id="collapseTrigger"><strong>Image Tagging Instructions</strong> <span class="collapse-text">(Click to expand)</span> </a>
+<div class="panel-body" id="instructionBody">
+<p>Determine if the sentences describe the clip art images.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- End Instructions --><!-- Image Tagging Layout -->
+
+<div class="row" id="workContent"><!-- Page 0 -->
+<div class="container text-center" id="splashScreen">
+<div class="jumbotron">
+<div class="row row-thin gray col-xs-16">
+<div class="col-xs-12">
+<h4><span style="font-family:comic sans ms,cursive;">In this study, you will be presented 5 groups of clip art images.&nbsp;<span style="color: inherit;">Each group includes 4 images. </span></span></h4>
+
+<h4><span style="font-family:comic sans ms,cursive;"><span style="color: inherit;">Each group of images is associated with 3 short sentences, as shown in the example below. </span></span></h4>
+
+<h4><span style="font-family:comic sans ms,cursive;"><span style="color: inherit;">Your job is to help us determine if each sentence matches the content of the corresponding clip art. You can choose from 3 options: </span></span></h4>
+
+<h4><span style="font-family:comic sans ms,cursive;"><span style="color: inherit;">&quot;</span><span style="color:#008000;">True</span><span style="color: inherit;">&quot; if the sentence matches the image, &quot;</span><span style="color:#B22222;">False</span><span style="color: inherit;">&quot; if not, &quot;</span><span style="color:#0000CD;">Unknown</span><span style="color: inherit;">&quot; if you&#39;re not sure.</span></span></h4>
+
+<h4><span style="font-family:comic sans ms,cursive;"><span style="color: inherit;">In the next pages, we provide a brief introduction about the study.</span></span></h4>
+
+<p>&nbsp;</p>
+
+<p><span style="font-family:comic sans ms,cursive;"><span style="color: inherit;">Example images, sentences and interfaces you will see in the coming&nbsp;study:</span></span></p>
+</div>
+<!-- example images -->
+
+<div class="col-xs-12"><img alt="foo.png" class="img-responsive img-embeded" src="http://www.cs.virginia.edu/~ft3ex/data/user_study_pictorial_rep/tutorial/foo.png" /></div>
+<!-- start --><!-- <div class="btn" id="startStudy">Start</div> -->
+
+<div class="btn btn-default" id="Instruction">Introduction</div>
+</div>
+</div>
+<!-- class="jumbotron" --></div>
+<!-- splashScreen --><!-- Page 0 --><!-- Page 1 -->
+
+<div class="container text-center hidden" id="Background">
+<h4><span style="font-family:comic sans ms,cursive;">Brief Introduction and Examples</span></h4>
+
+<h4><span style="font-family:comic sans ms,cursive;">A group of images typically depict a scene where children are playing. Each image is composed with the clip arts (or objects) shown below. When comparing the sentences and the images, please pay attention to</span></h4>
+
+<ol>
+	<li style="text-align: left;">
+	<p><span style="font-family:comic sans ms,cursive;"><span style="color: rgb(34, 34, 34); font-size: 14px;">if the objects mentioned in the sentence&nbsp;</span><strong style="color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: 14px;">occur</strong><span style="color: rgb(34, 34, 34); font-size: 14px;">&nbsp;in the image,</span></span></p>
+	</li>
+	<li style="text-align: left;">
+	<p><span style="font-family:comic sans ms,cursive;">if the&nbsp;<u><strong style="color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: 14px;">poses</strong></u><span style="color: rgb(34, 34, 34); font-size: 14px;">&nbsp;(e.g., arms up, kick), facial&nbsp;</span><u><strong style="color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: 14px;">expressions</strong></u><span style="color: rgb(34, 34, 34); font-size: 14px;">&nbsp;(e.g. happy, sad) and&nbsp;</span><u><strong style="color: rgb(34, 34, 34); font-family: Arial, Helvetica, sans-serif; font-size: 14px;">accessaries</strong></u><span style="color: rgb(34, 34, 34); font-size: 14px;">&nbsp;(e.g. hat)&nbsp;of the children are matched,</span></span></p>
+	</li>
+	<li style="text-align: left;">
+	<p><span style="font-family:comic sans ms,cursive;"><span style="color: rgb(34, 34, 34); font-size: 14px;">if the&nbsp;<u><strong>locations</strong></u>&nbsp;of the objects make sense.</span></span></p>
+	</li>
+</ol>
+
+<div class="col-xs-12 image" id="clip_art"><font face="comic sans ms, cursive"><img alt="clip_art" class="img-responsive center-block" src="http://www.cs.virginia.edu/~ft3ex/data/user_study_pictorial_rep/tutorial/clip_art.png" /></font></div>
+
+<h4><span style="font-family:comic sans ms,cursive;">Here we show two examples:</span></h4>
+
+<div class="col-xs-12"><img alt="foo.png" class="img-responsive img-embeded" src="http://www.cs.virginia.edu/~ft3ex/data/user_study_pictorial_rep/tutorial/bar.png" /></div>
+
+<div class="col-xs-12">
+<p>&nbsp;</p>
+
+<div class="col-xs-16">
+<h4><span style="font-family:comic sans ms,cursive;">If you&#39;re ready, please press the start button to get started.</span></h4>
+</div>
+</div>
+
+<div class="container text-center col-xs-12">
+<div class="btn btn-default" id="startStudy">Start</div>
+</div>
+</div>
+<!-- Page 1 --><!-- Page X -->
+
+<div class="container hidden" id="studyContent">
+<div class="col-xs-12 hidden" id="gimg_00">
+<div class="col-xs-3 image"><img alt="image_url_00_0" class="img-responsive img-embeded" src="${image_url_00_0}" /></div>
+
+<div class="col-xs-3 image"><img alt="image_url_00_1" class="img-responsive img-embeded" src="${image_url_00_1}" /></div>
+
+<div class="col-xs-3 image"><img alt="image_url_00_2" class="img-responsive img-embeded" src="${image_url_00_2}" /></div>
+
+<div class="col-xs-3 image"><img alt="image_url_00_3" class="img-responsive img-embeded" src="${image_url_00_3}" /></div>
+</div>
+
+<div class="col-xs-12 hidden" id="gtxt_00">
+<div class="col-xs-3" id="gtxt_00_0">
+<h5>${text_00_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_0_0" name="result_00_0_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_0_0" name="result_00_0_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_0_0" name="result_00_0_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_0_1" name="result_00_0_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_0_1" name="result_00_0_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_0_1" name="result_00_0_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_0_2" name="result_00_0_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_0_2" name="result_00_0_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_0_2" name="result_00_0_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_00_1">
+<h5>${text_00_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_1_0" name="result_00_1_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_1_0" name="result_00_1_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_1_0" name="result_00_1_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_1_1" name="result_00_1_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_1_1" name="result_00_1_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_1_1" name="result_00_1_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_1_2" name="result_00_1_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_1_2" name="result_00_1_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_1_2" name="result_00_1_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_00_2">
+<h5>${text_00_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_2_0" name="result_00_2_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_2_0" name="result_00_2_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_2_0" name="result_00_2_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_2_1" name="result_00_2_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_2_1" name="result_00_2_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_2_1" name="result_00_2_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_2_2" name="result_00_2_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_2_2" name="result_00_2_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_2_2" name="result_00_2_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_00_3">
+<h5>${text_00_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_3_0" name="result_00_3_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_3_0" name="result_00_3_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_3_0" name="result_00_3_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_3_1" name="result_00_3_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_3_1" name="result_00_3_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_3_1" name="result_00_3_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_00_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_00_3_2" name="result_00_3_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_00_3_2" name="result_00_3_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_00_3_2" name="result_00_3_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+</div>
+
+<div class="col-xs-12 hidden" id="gimg_01">
+<div class="col-xs-3"><img alt="image_url_01_0" class="img-responsive img-embeded" src="${image_url_01_0}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_01_1" class="img-responsive img-embeded" src="${image_url_01_1}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_01_2" class="img-responsive img-embeded" src="${image_url_01_2}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_01_3" class="img-responsive img-embeded" src="${image_url_01_3}" /></div>
+</div>
+
+<div class="col-xs-12 hidden" id="gtxt_01">
+<div class="col-xs-3" id="gtxt_01_0">
+<h5>${text_01_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_0_0" name="result_01_0_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_0_0" name="result_01_0_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_0_0" name="result_01_0_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_0_1" name="result_01_0_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_0_1" name="result_01_0_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_0_1" name="result_01_0_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_0_2" name="result_01_0_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_0_2" name="result_01_0_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_0_2" name="result_01_0_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_01_1">
+<h5>${text_01_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_1_0" name="result_01_1_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_1_0" name="result_01_1_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_1_0" name="result_01_1_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_1_1" name="result_01_1_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_1_1" name="result_01_1_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_1_1" name="result_01_1_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_1_2" name="result_01_1_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_1_2" name="result_01_1_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_1_2" name="result_01_1_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_01_2">
+<h5>${text_01_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_2_0" name="result_01_2_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_2_0" name="result_01_2_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_2_0" name="result_01_2_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_2_1" name="result_01_2_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_2_1" name="result_01_2_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_2_1" name="result_01_2_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_2_2" name="result_01_2_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_2_2" name="result_01_2_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_2_2" name="result_01_2_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_01_3">
+<h5>${text_01_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_3_0" name="result_01_3_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_3_0" name="result_01_3_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_3_0" name="result_01_3_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_3_1" name="result_01_3_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_3_1" name="result_01_3_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_3_1" name="result_01_3_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_01_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_01_3_2" name="result_01_3_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_01_3_2" name="result_01_3_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_01_3_2" name="result_01_3_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+</div>
+
+<div class="col-xs-12 hidden" id="gimg_02">
+<div class="col-xs-3"><img alt="image_url_02_0" class="img-responsive img-embeded" src="${image_url_02_0}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_02_1" class="img-responsive img-embeded" src="${image_url_02_1}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_02_2" class="img-responsive img-embeded" src="${image_url_02_2}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_02_3" class="img-responsive img-embeded" src="${image_url_02_3}" /></div>
+</div>
+
+<div class="col-xs-12 hidden" id="gtxt_02">
+<div class="col-xs-3" id="gtxt_02_0">
+<h5>${text_02_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_0_0" name="result_02_0_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_0_0" name="result_02_0_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_0_0" name="result_02_0_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_0_1" name="result_02_0_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_0_1" name="result_02_0_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_0_1" name="result_02_0_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_0_2" name="result_02_0_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_0_2" name="result_02_0_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_0_2" name="result_02_0_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_02_1">
+<h5>${text_02_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_1_0" name="result_02_1_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_1_0" name="result_02_1_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_1_0" name="result_02_1_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_1_1" name="result_02_1_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_1_1" name="result_02_1_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_1_1" name="result_02_1_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_1_2" name="result_02_1_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_1_2" name="result_02_1_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_1_2" name="result_02_1_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_02_2">
+<h5>${text_02_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_2_0" name="result_02_2_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_2_0" name="result_02_2_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_2_0" name="result_02_2_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_2_1" name="result_02_2_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_2_1" name="result_02_2_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_2_1" name="result_02_2_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_2_2" name="result_02_2_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_2_2" name="result_02_2_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_2_2" name="result_02_2_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_02_3">
+<h5>${text_02_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_3_0" name="result_02_3_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_3_0" name="result_02_3_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_3_0" name="result_02_3_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_3_1" name="result_02_3_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_3_1" name="result_02_3_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_3_1" name="result_02_3_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_02_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_02_3_2" name="result_02_3_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_02_3_2" name="result_02_3_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_02_3_2" name="result_02_3_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+</div>
+
+<div class="col-xs-12 hidden" id="gimg_03">
+<div class="col-xs-3"><img alt="image_url_03_0" class="img-responsive img-embeded" src="${image_url_03_0}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_03_1" class="img-responsive img-embeded" src="${image_url_03_1}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_03_2" class="img-responsive img-embeded" src="${image_url_03_2}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_03_3" class="img-responsive img-embeded" src="${image_url_03_3}" /></div>
+</div>
+
+<div class="col-xs-12 hidden" id="gtxt_03">
+<div class="col-xs-3" id="gtxt_03_0">
+<h5>${text_03_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_0_0" name="result_03_0_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_0_0" name="result_03_0_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_0_0" name="result_03_0_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_0_1" name="result_03_0_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_0_1" name="result_03_0_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_0_1" name="result_03_0_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_0_2" name="result_03_0_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_0_2" name="result_03_0_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_0_2" name="result_03_0_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_03_1">
+<h5>${text_03_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_1_0" name="result_03_1_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_1_0" name="result_03_1_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_1_0" name="result_03_1_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_1_1" name="result_03_1_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_1_1" name="result_03_1_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_1_1" name="result_03_1_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_1_2" name="result_03_1_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_1_2" name="result_03_1_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_1_2" name="result_03_1_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_03_2">
+<h5>${text_03_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_2_0" name="result_03_2_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_2_0" name="result_03_2_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_2_0" name="result_03_2_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_2_1" name="result_03_2_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_2_1" name="result_03_2_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_2_1" name="result_03_2_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_2_2" name="result_03_2_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_2_2" name="result_03_2_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_2_2" name="result_03_2_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_03_3">
+<h5>${text_03_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_3_0" name="result_03_3_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_3_0" name="result_03_3_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_3_0" name="result_03_3_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_3_1" name="result_03_3_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_3_1" name="result_03_3_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_3_1" name="result_03_3_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_03_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_03_3_2" name="result_03_3_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_03_3_2" name="result_03_3_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_03_3_2" name="result_03_3_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+</div>
+
+<div class="col-xs-12 hidden" id="gimg_04">
+<div class="col-xs-3"><img alt="image_url_04_0" class="img-responsive img-embeded" src="${image_url_04_0}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_04_1" class="img-responsive img-embeded" src="${image_url_04_1}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_04_2" class="img-responsive img-embeded" src="${image_url_04_2}" /></div>
+
+<div class="col-xs-3"><img alt="image_url_04_3" class="img-responsive img-embeded" src="${image_url_04_3}" /></div>
+</div>
+
+<div class="col-xs-12 hidden" id="gtxt_04">
+<div class="col-xs-3" id="gtxt_04_0">
+<h5>${text_04_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_0_0" name="result_04_0_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_0_0" name="result_04_0_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_0_0" name="result_04_0_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_0_1" name="result_04_0_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_0_1" name="result_04_0_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_0_1" name="result_04_0_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_0_2" name="result_04_0_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_0_2" name="result_04_0_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_0_2" name="result_04_0_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_04_1">
+<h5>${text_04_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_1_0" name="result_04_1_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_1_0" name="result_04_1_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_1_0" name="result_04_1_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_1_1" name="result_04_1_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_1_1" name="result_04_1_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_1_1" name="result_04_1_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_1_2" name="result_04_1_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_1_2" name="result_04_1_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_1_2" name="result_04_1_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_04_2">
+<h5>${text_04_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_2_0" name="result_04_2_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_2_0" name="result_04_2_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_2_0" name="result_04_2_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_2_1" name="result_04_2_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_2_1" name="result_04_2_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_2_1" name="result_04_2_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_2_2" name="result_04_2_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_2_2" name="result_04_2_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_2_2" name="result_04_2_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+
+<div class="col-xs-3" id="gtxt_04_3">
+<h5>${text_04_0}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_3_0" name="result_04_3_0" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_3_0" name="result_04_3_0" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_3_0" name="result_04_3_0" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_1}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_3_1" name="result_04_3_1" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_3_1" name="result_04_3_1" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_3_1" name="result_04_3_1" required="" type="radio" value="na" />Unknown </label></h5>
+
+<h5>${text_04_2}</h5>
+
+<h5><label class="radio-inline"><input autocomplete="off" id="yes_04_3_2" name="result_04_3_2" required="" type="radio" value="yes" />True </label> <label class="radio-inline"><input autocomplete="off" id="no_04_3_2" name="result_04_3_2" required="" type="radio" value="no" />False </label> <label class="radio-inline"><input autocomplete="off" id="na_04_3_2" name="result_04_3_2" required="" type="radio" value="na" />Unknown </label></h5>
+</div>
+</div>
+
+<div class="col-xs-12 text-center">
+<div class="btn btn-default" id="dying" name="mygod">Next</div>
+</div>
+<!-- nextButton -->
+
+<div class="container text-center" id="warning">You must finish all <strong>5</strong> groups of images before you can submit.</div>
+</div>
+<!-- studyContent --></div>
+<!-- workContent --></section>
+<!-- End Image Tagging Layout --><!-- Open internal style sheet -->
+<style type="text/css">#collapseTrigger{
+  color:#fff;
+  display: block;
+  text-decoration: none;
+}
+#submitButton{
+  white-space: normal;
+}
+.image{
+  margin-bottom: 15px;
+}
+.radio:first-of-type{
+  margin-top: -5px;
+}
+</style>
+<!-- Close internal style sheet --><!-- Please note that Bootstrap CSS/JS and JQuery are 3rd party libraries that may update their url/code at any time. Amazon Mechanical Turk (MTurk) is including these libraries as a default option for you, but is not responsible for any changes to the external libraries --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script><script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js" integrity="sha384-s1ITto93iSMDxlp/79qhWHi+LsIi9Gx6yL+cOKDuymvihkfol83TYbLbOw+W/wv4" crossorigin="anonymous"></script><script>
+  $(document).ready(function() {
+    // Instructions expand/collapse
+    var content = $('#instructionBody');
+    var trigger = $('#collapseTrigger');
+    content.hide();
+    $('.collapse-text').text('(Click to expand)');
+    trigger.click(function(){
+      content.toggle();
+      var isVisible = content.is(':visible');
+      if(isVisible){
+        $('.collapse-text').text('(Click to collapse)');
+      }else{
+        $('.collapse-text').text('(Click to expand)');
+      }
+    });
+    // end expand/collapse
+    var count = 0;
+    var numGroups = 5;
+
+    $("#Instruction").click(function() {
+      $("#splashScreen").addClass("hidden");
+      $("#Background").removeClass("hidden");
+    });
+
+    $("#startStudy").click(function() {
+      $("#Background").addClass("hidden");
+      $("#studyContent").removeClass("hidden");
+      $("#gimg_00").removeClass("hidden");
+      $("#gtxt_00").removeClass("hidden");
+    });
+
+    $("#dying").click(function() {
+      if (checkiffinish(count)) {
+        if (count >= numGroups - 1) {
+          // $('#submitButton').click();
+          // print_options();
+          var warning = document.getElementById("warning");
+          warning.innerHTML = "You have finished all images. Thank you very much for helping with the study. Please go ahead to submit.";
+        } else {
+          cur_img_group = getImageGroupName(count);
+          $(cur_img_group).addClass("hidden");
+          cur_txt_group = getTextGroupName(count);
+          $(cur_txt_group).addClass("hidden");
+          
+          nxt_img_group = getImageGroupName(count+1);
+          $(nxt_img_group).removeClass("hidden");
+          nxt_txt_group = getTextGroupName(count+1);
+          $(nxt_txt_group).removeClass("hidden");
+          count++;
+        
+          var warning = document.getElementById("warning");
+          warning.innerHTML = "You have finished " + count + "/5 groups. You have to finish all groups before you can submit.";
+        }
+      } else {
+        var warning = document.getElementById("warning");
+        warning.innerHTML = "Oops, it seems you left some options unchecked.";
+      }
+    });    
+        
+    function getImageGroupName(cnt) {
+      var group_name;
+      if (cnt < 10) { group_name = "#gimg_0" + cnt;}
+      else { group_name = "#gimg_" + cnt;}
+      return group_name;
+    }
+    
+    function getTextGroupName(cnt) {
+      var group_name;
+      if (cnt < 10) {group_name = "#gtxt_0" + cnt;}
+      else { group_name = "#gtxt_" + cnt;}
+      return group_name;
+    }
+        
+    function getRadioName(prefix, gid, iid, sid) {
+      var option_name;
+      if (gid < 10) { option_name = prefix + '_0' + gid + "_" + iid + "_" + sid;} 
+      else { option_name = prefix + '_' + gid + "_" + iid + "_" + sid; }
+      return option_name;
+    } 
+        
+    function checkiffinish(cnt) {
+      var select_all = true;
+      for (var iid = 0; iid < 4; ++iid) {
+        for (var sid = 0; sid < 3; ++sid) {
+          yes_res = getRadioName("#yes", cnt, iid, sid);
+          no_res = getRadioName("#no", cnt, iid, sid);
+          na_res = getRadioName("#na", cnt, iid, sid);
+          var select_cur = $(yes_res).is(':checked') || $(no_res).is(':checked') || $(na_res).is(':checked');
+          select_all = select_all && select_cur;
+        }
+      }
+      return select_all;
+    }
+        
+    function print_options() {
+      var warning = document.getElementById("warning");
+      warning.innerHTML = "Results: ";
+      
+      for (var cnt = 0; cnt < 5; ++cnt) {
+        for (var iid = 0; iid < 4; ++iid) {
+          for (var sid = 0; sid < 3; ++sid) {
+            res = getRadioName("result", cnt, iid, sid);
+            foo = 'input[name=' + res + ']:checked'
+            var selValue = $(foo).val(); 
+            warning.innerHTML = warning.innerHTML + res + selValue + ";"
+          }
+        }
+      } 
+    }
+  });
+</script>
