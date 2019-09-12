@@ -5,10 +5,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torchvision import models
-from modules.separable_convolution import same_padding_size
-# from modules.bilinear_downsample import BilinearDownsample
+from modules.separable_convolution import same_padding_size, separable_conv2d
 import torch.nn.functional as F
-from modules.separable_convolution import separable_conv2d
 
 
 class SynthesisDecoder(nn.Module):

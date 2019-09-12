@@ -103,20 +103,13 @@ class Attention(nn.Module):
 
     def forward(self, h_t, h_s, m_s):
         src_batch, src_len, src_dim = h_s.size()
-
         scores = self.score(h_t, h_s)
         src_mask = m_s.view(src_batch, 1, src_len)
-        # print(src_mask[0,0])
-        # print(scores[0,0])
         scores = scores * src_mask
         scores = scores - 1e11 * (1.0 - src_mask)
-        # print(scores[0,0])
         scores = self.softmax(scores.clamp(min=-1e10))
-        # print(scores[0,0])
-
         # (batch, tgt_len, src_len) * (batch, src_len, src_dim) -> (batch, tgt_len, src_dim)
         context = torch.bmm(scores, h_s)
-
         # concat -> (batch, tgt_len, src_dim+tgt_dim)
         # combined = torch.cat((context, h_t), dim=-1)
         # # output -> (batch, tgt_len, tgt_dim)

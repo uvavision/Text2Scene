@@ -13,7 +13,6 @@ tab-separated-values file (some_folder_name/log.txt)
 To load the learning curves, you can do, for example
 
 A = np.genfromtxt('/tmp/expt_1468984536/log.txt',delimiter='\t',dtype=None, names=True)
-A['EpRewMean']
 
 """
 
@@ -21,8 +20,6 @@ import os.path as osp, json
 import os, atexit, subprocess
 import time, pickle, shutil
 # import tensorflow as tf
-
-from utils import maybe_create
 
 
 color2num = dict(
@@ -59,7 +56,6 @@ def configure_output_dir(d=None):
     G.output_dir = d or "/tmp/experiments/%i"%int(time.time())
     # assert not osp.exists(G.output_dir), "Log dir %s already exists! Delete it first or use a different dir"%G.output_dir
     # os.makedirs(G.output_dir)
-    maybe_create(G.output_dir)
     G.output_file = open(osp.join(G.output_dir, "log.txt"), 'w')
     atexit.register(G.output_file.close)
     print(colorize("Logging data to %s"%G.output_file.name, 'green', bold=True))

@@ -8,21 +8,15 @@ ext_modules = [
     Extension(
         "nms.cpu_nms",
         ["nms/cpu_nms.pyx"],
-        extra_compile_args=['-Wno-cpp', '-Wno-unused-function', '-std=c99'],#{'gcc': ["-Wno-cpp", "-Wno-unused-function"]},
+        extra_compile_args=['-Wno-cpp', '-Wno-unused-function', '-std=c99'],
         include_dirs = [np.get_include()]
     ),
-    Extension(
-        'pycocotools._mask',
-        sources=['pycocotools/maskApi.c', 'pycocotools/_mask.pyx'],
-        include_dirs = [np.get_include(), 'pycocotools'],
-        extra_compile_args=['-Wno-cpp', '-Wno-unused-function', '-std=c99'],
-    )
 ]
 
 setup(
-    name='pycocotools',
-    packages=['pycocotools'],
-    package_dir = {'pycocotools': 'pycocotools'},
+    name='external_tools',
+    packages=['external_tools'],
+    package_dir = {'external_tools': 'external_tools'},
     install_requires=[
         'setuptools>=18.0',
         'cython>=0.27.3',

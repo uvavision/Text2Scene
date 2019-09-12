@@ -6,8 +6,6 @@ import os, sys, cv2, json
 import math, copy, random
 import numpy as np
 import os.path as osp
-from config import get_config
-from utils import *
 
 import torch
 import torch.nn as nn

@@ -6,10 +6,9 @@ import numpy as np
 import pickle, shutil
 import os.path as osp
 from copy import deepcopy
-from config import get_config
+
 import matplotlib.pyplot as plt
 from glob import glob
-from utils import *
 
 import torch
 import torch.nn as nn
@@ -17,10 +16,11 @@ import torch.optim as optim
 from torch.utils.data import DataLoader
 
 from modules.puzzle_model import PuzzleModel
+from composites_config import get_config
+from composites_utils import *
 from optim import Optimizer
 
-from datasets.coco_loader import patch_vol_loader
-from datasets.coco_loader import sequence_loader
+from datasets.composites_loader import sequence_loader, patch_vol_loader
 from nntable import AllCategoriesTables
 
 
@@ -66,7 +66,7 @@ class PuzzleTrainer(object):
             net = self.net
 
         cache_dir = osp.join(self.cfg.data_dir, 'caches')
-        pretrained_path = osp.join(cache_dir, 'puzzle_ckpts', pretrained_name+'.pkl')
+        pretrained_path = osp.join(cache_dir, 'composites_ckpts', pretrained_name+'.pkl')
         assert osp.exists(pretrained_path)
         if self.cfg.cuda:
             states = torch.load(pretrained_path)
@@ -247,15 +247,6 @@ class PuzzleTrainer(object):
         logz.save_config(self.cfg)
 
         ##################################################################
-        ## NN table
-        ##################################################################
-        if self.cfg.use_hard_mining:
-            self.train_tables = AllCategoriesTables(train_db)
-            self.val_tables = AllCategoriesTables(val_db)
-            self.train_tables.build_nntables_for_all_categories(True)
-            self.val_tables.build_nntables_for_all_categories(True)
-
-        ##################################################################
         ## Main loop
         ##################################################################
         start = time()
@@ -304,24 +295,7 @@ class PuzzleTrainer(object):
             ##################################################################
             ## Checkpoint
             ##################################################################
-            if self.cfg.use_hard_mining:
-                if (epoch+1)%3 == 0:
-                    torch.cuda.empty_cache()
-                    t0 = time()
-                    self.dump_shape_vectors(train_db)
-                    torch.cuda.empty_cache()
-                    self.dump_shape_vectors(val_db)
-                    print("Dump shape vectors completes (time %.2fs)" % (time() - t0))
-                    torch.cuda.empty_cache()
-                    t0 = time()
-                    self.train_tables.build_nntables_for_all_categories(False)
-                    self.val_tables.build_nntables_for_all_categories(False)
-                    print("NN completes (time %.2fs)" % (time() - t0))
             self.save_checkpoint(epoch)
-            # else:
-            #     if min_val_loss > current_val_loss:
-            #         min_val_loss = current_val_loss
-            #         self.save_checkpoint(epoch)
                            
     def train_epoch(self, train_db, epoch):
         if self.cfg.cuda and self.cfg.parallel:
@@ -330,16 +304,8 @@ class PuzzleTrainer(object):
             net = self.net
 
         train_db.cfg.sent_group = -1
-        if self.cfg.use_hard_mining:
-            seq_db = sequence_loader(train_db, self.train_tables)
-        else:
-            seq_db = sequence_loader(train_db)
+        seq_db = sequence_loader(train_db)
 
-        # if epoch == 0:
-        #     seq_db = sequence_loader(train_db)
-        # else:
-        #     seq_db = sequence_loader(train_db, self.train_tables)
-        # seq_db = sequence_loader(train_db, self.train_tables)
         train_loader = DataLoader(seq_db,
             batch_size=self.cfg.batch_size, shuffle=True,
             num_workers=self.cfg.num_workers, pin_memory=True)
@@ -363,10 +329,7 @@ class PuzzleTrainer(object):
 
             inputs = (input_inds, input_lens, bg_imgs, fg_onehots, fg_imgs, neg_imgs, fg_resnets, neg_resnets)
             inf_outs, _, pos_vecs, neg_vecs = self.net(inputs)
-            if self.cfg.use_hard_mining:
-                pred_loss, embed_loss, attn_loss, pred_accu = self.evaluate(inf_outs, pos_vecs, neg_vecs, gt_inds, gt_msks, train_db, patch_inds)
-            else:
-                pred_loss, embed_loss, attn_loss, pred_accu = self.evaluate(inf_outs, pos_vecs, neg_vecs, gt_inds, gt_msks)
+            pred_loss, embed_loss, attn_loss, pred_accu = self.evaluate(inf_outs, pos_vecs, neg_vecs, gt_inds, gt_msks)
 
             loss = pred_loss + embed_loss + attn_loss
             loss.backward()
@@ -407,18 +370,9 @@ class PuzzleTrainer(object):
             net = self.net
 
         all_losses, all_accuracies = [], []
-        # initial experiment, just use one group of sentence
         for G in range(5):
             val_db.cfg.sent_group = G
-            # if epoch == 0:
-            #     seq_db = sequence_loader(val_db)
-            # else:
-            #     seq_db = sequence_loader(val_db, self.val_tables)
-            # seq_db = sequence_loader(val_db, self.val_tables)
-            if self.cfg.use_hard_mining:
-                seq_db = sequence_loader(val_db, self.val_tables)
-            else:
-                seq_db = sequence_loader(val_db)
+            seq_db = sequence_loader(val_db)
             val_loader = DataLoader(seq_db,
                 batch_size=self.cfg.batch_size, shuffle=False,
                 num_workers=self.cfg.num_workers, pin_memory=True)
@@ -439,10 +393,7 @@ class PuzzleTrainer(object):
                 with torch.no_grad():
                     inputs = (input_inds, input_lens, bg_imgs, fg_onehots, fg_imgs, neg_imgs, fg_resnets, neg_resnets)
                     inf_outs, _, pos_vecs, neg_vecs = self.net(inputs)
-                    if self.cfg.use_hard_mining:
-                        pred_loss, embed_loss, attn_loss, pred_accu = self.evaluate(inf_outs, pos_vecs, neg_vecs, gt_inds, gt_msks, val_db, patch_inds)
-                    else:
-                        pred_loss, embed_loss, attn_loss, pred_accu = self.evaluate(inf_outs, pos_vecs, neg_vecs, gt_inds, gt_msks)
+                    pred_loss, embed_loss, attn_loss, pred_accu = self.evaluate(inf_outs, pos_vecs, neg_vecs, gt_inds, gt_msks)
 
                 loss = pred_loss + embed_loss + attn_loss
                 all_losses.append(np.array(
@@ -466,7 +417,7 @@ class PuzzleTrainer(object):
             net = self.net.module
         else:
             net = self.net
-        checkpoint_dir = osp.join(self.cfg.model_dir, 'puzzle_ckpts')
+        checkpoint_dir = osp.join(self.cfg.model_dir, 'composites_ckpts')
         if not osp.exists(checkpoint_dir):
             os.makedirs(checkpoint_dir)
         states = {
@@ -501,6 +452,68 @@ class PuzzleTrainer(object):
 
         return attn_words
 
+    def sample_demo(self, input_sentences, nn_table):
+        output_dir = osp.join(self.cfg.model_dir, 'composites_samples')
+        maybe_create(output_dir)
+        plt.switch_backend('agg')
+        if self.cfg.cuda and self.cfg.parallel:
+            net = self.net.module
+        else:
+            net = self.net
+        num_sents = len(input_sentences)
+        for i in range(num_sents):
+            sentence = input_sentences[i]
+            ##############################################################
+            # Inputs
+            ##############################################################
+            word_inds, word_lens = self.db.encode_sentence(sentence)
+            input_inds_np = np.array(word_inds)
+            input_lens_np = np.array(word_lens)
+            input_inds = torch.from_numpy(input_inds_np).long().unsqueeze(0)
+            input_lens = torch.from_numpy(input_lens_np).long().unsqueeze(0)
+            if self.cfg.cuda:
+                input_inds = input_inds.cuda()
+                input_lens = input_lens.cuda()
+            ##############################################################
+            # Inference
+            ##############################################################
+            self.net.eval()
+            with torch.no_grad():
+                inf_outs, env = net.inference(input_inds, input_lens, -1, 1.0, 0, None, None, nn_table)
+            frames, _, _, _, _ = env.batch_redraw(return_sequence=True)
+            frames = frames[0]
+            # _, _, _, _, _, what_wei, where_wei = inf_outs
+            # if self.cfg.what_attn:
+            #     what_attn_words = self.decode_attention(
+            #         input_inds_np, input_lens_np, what_wei.squeeze(0))
+            # if self.cfg.where_attn > 0:
+            #     where_attn_words = self.decode_attention(
+            #         input_inds_np, input_lens_np, where_wei.squeeze(0))
+
+            ##############################################################
+            # Draw
+            ##############################################################
+            fig = plt.figure(figsize=(32, 32))
+            plt.suptitle(sentence, fontsize=40)
+            for j in range(len(frames)):
+                # subtitle = ''
+                # if self.cfg.what_attn:
+                #     subtitle = subtitle + ' '.join(what_attn_words[j])
+                # if self.cfg.where_attn > 0:
+                #     subtitle = subtitle + '\n' + ' '.join(where_attn_words[j])
+                plt.subplot(4, 4, j+1)
+                # plt.title(subtitle, fontsize=30)
+                if self.cfg.use_color_volume:
+                    vis_img, _ = heuristic_collage(frames[j], 83)
+                else:
+                    vis_img = frames[j][:,:,-3:]
+                vis_img = clamp_array(vis_img[ :, :, ::-1], 0, 255).astype(np.uint8)
+                plt.imshow(vis_img)
+                plt.axis('off')
+            out_path = osp.join(output_dir, '%09d.png'%i)
+            fig.savefig(out_path, bbox_inches='tight')
+            plt.close(fig)
+        
     def sample_for_vis(self, epoch, test_db, N, random_or_not=False, nn_table=None):
         ##############################################################
         # Output prefix

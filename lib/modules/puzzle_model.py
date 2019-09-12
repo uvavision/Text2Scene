@@ -7,11 +7,11 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from modules.encoder import TextEncoder, VolumeEncoder, ShapeEncoder
-from modules.decoder import WhatDecoder, WhereDecoder
-from torch.distributions.categorical import Categorical
+from modules.composites_encoder import TextEncoder, VolumeEncoder, ShapeEncoder
+from modules.composites_decoder import WhatDecoder, WhereDecoder
+from modules.composites_simulator import simulator
 
-from simulator import simulator
+from torch.distributions.categorical import Categorical
 
 
 class PuzzleModel(nn.Module):

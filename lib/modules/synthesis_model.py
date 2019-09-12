@@ -6,7 +6,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from modules.encoder import SynthesisEncoder
+from modules.composites_encoder import SynthesisEncoder
 from modules.perceptual_loss import VGG19LossNetwork
 from modules.synthesis_decoder import SynthesisDecoder
 
