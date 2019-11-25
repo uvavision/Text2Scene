@@ -23,7 +23,7 @@ def train_model(config):
     test_db  = layout_coco(config, split='test',  transform=transformer)
 
     trainer = SupervisedTrainer(train_db)
-    trainer.train(train_db, test_db, val_db)   
+    trainer.train(train_db, val_db, test_db)   
 
 
 if __name__ == '__main__':
