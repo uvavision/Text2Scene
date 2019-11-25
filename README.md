@@ -45,7 +45,7 @@ Please note that, for layout generation, we use coco2017 splits. But for composi
 ./experiments/scripts/sample_abstract.sh	# Abstract Scene demo
 ./experiments/scripts/sample_layout.sh	# Layout demo
 ```
-The scripts will take the example sentences in `Text2Scene/examples` as input. The step-by-step generation results will appear in `Text2Scene/logs`. Runing the scripts for the first time would be slow as it takes time to generate cache files (in `Text2Scene/caches`) for the datasets and download the GloVe data.
+The scripts will take the example sentences in `Text2Scene/examples` as input. The step-by-step generation results will appear in `Text2Scene/logs`. Runing the scripts for the first time would be slow as it takes time to generate cache files (in `Text2Scene/data/caches`) for the datasets and download the GloVe data.
 
 - To run the composite demo, you need to download auxiliary data, including the image segment database and (optionally) the precomputed nearest neighbor tree. Be careful that the auxiliary data is around 30GB!!
 ```Shell
