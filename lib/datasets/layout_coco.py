@@ -99,29 +99,30 @@ class layout_coco(Dataset):
         entry['word_lens'] = np.sum(word_msks).astype(np.int32)
 
         # Output inds
-        out_inds, out_msks = self.scene_to_output_inds(scene)  
-        entry['out_inds'] = out_inds
-        entry['out_msks'] = out_msks
+        if len(scene['clses']) > 0:
+            out_inds, out_msks = self.scene_to_output_inds(scene)  
+            entry['out_inds'] = out_inds
+            entry['out_msks'] = out_msks
 
-        gt_fg_inds = deepcopy(out_inds[:,0]).astype(np.int32).flatten().tolist()
-        gt_fg_inds = [self.cfg.SOS_idx] + gt_fg_inds
-        gt_fg_inds = np.array(gt_fg_inds)
-        entry['fg_inds'] = gt_fg_inds
+            gt_fg_inds = deepcopy(out_inds[:,0]).astype(np.int32).flatten().tolist()
+            gt_fg_inds = [self.cfg.SOS_idx] + gt_fg_inds
+            gt_fg_inds = np.array(gt_fg_inds)
+            entry['fg_inds'] = gt_fg_inds
 
-        ###################################################################
-        ## Images and Layouts
-        ###################################################################
-        entry['color_path'] = self.image_path_from_index(entry['image_idx'])
-        vols = self.render_vols(out_inds, return_sequence=True)
-        pad_vol = np.zeros_like(vols[-1])
-        entry['background'], _ = \
-            self.pad_sequence(vols, self.cfg.max_output_length, pad_vol, pad_vol, None, 0.0)
+            ###################################################################
+            ## Images and Layouts
+            ###################################################################
+            entry['color_path'] = self.image_path_from_index(entry['image_idx'])
+            vols = self.render_vols(out_inds, return_sequence=True)
+            pad_vol = np.zeros_like(vols[-1])
+            entry['background'], _ = \
+                self.pad_sequence(vols, self.cfg.max_output_length, pad_vol, pad_vol, None, 0.0)
 
-        ###################################################################
-        ## Transformation
-        ###################################################################
-        if self.transform:
-            entry = self.transform(entry)
+            ###################################################################
+            ## Transformation
+            ###################################################################
+            if self.transform:
+                entry = self.transform(entry)
 
         return entry
 
