@@ -276,9 +276,9 @@ class proposal_loader(Dataset):
         in_label_path = self.db.image_path_from_index(image_index, 'proposal_labels', 'png')
         in_mask_path = self.db.image_path_from_index(image_index, 'proposal_masks', 'png')
 
-        # print(in_proposal_path)
-        # print(in_mask_path)
-        # print(in_label_path)
+        # print('in_proposal_path', in_proposal_path)
+        # print('in_mask_path', in_mask_path)
+        # print('in_label_path', in_label_path)
 
         in_proposal = cv2.imread(in_proposal_path, cv2.IMREAD_COLOR)
         in_mask     = cv2.imread(in_mask_path, cv2.IMREAD_GRAYSCALE)

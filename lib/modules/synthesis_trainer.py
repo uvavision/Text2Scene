@@ -5,10 +5,10 @@ import random, json, logz
 import numpy as np
 import os.path as osp
 from copy import deepcopy
-from config import get_config
 import matplotlib.pyplot as plt
 from glob import glob
-from utils import *
+from composites_utils import *
+from composites_config import get_config
 from optim import Optimizer
 
 import torch
@@ -16,7 +16,7 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
-from datasets.coco_loader import synthesis_loader, proposal_loader
+from datasets.composites_loader import sequence_loader, proposal_loader
 
 from modules.synthesis_model import SynthesisModel
 
@@ -295,7 +295,7 @@ class SynthesisTrainer(object):
                 weights = 0.5 * (1.0 + weights)
 
             ##################################################################
-            ## Train one step
+            ## Validate one step
             ##################################################################
             with torch.no_grad():
                 synthesized_images, synthesized_labels, synthesized_features, gt_features = \
