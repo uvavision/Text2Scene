@@ -7,20 +7,19 @@ import numpy as np
 import pickle, random
 import os.path as osp
 from time import time
-from config import get_config
 from copy import deepcopy
 from glob import glob
 import matplotlib.pyplot as plt
 from nltk.tokenize import word_tokenize
 from collections import OrderedDict
-from utils import *
 from nntable import AllCategoriesTables
 
-from datasets.coco import coco
-from datasets.coco_loader import sequence_loader
-from datasets.coco_loader import synthesis_loader
-
-from modules.encoder import SynthesisEncoder
+from composites_utils import *
+from composites_config import get_config
+from datasets.composites_coco import composites_coco
+from datasets.composites_loader import sequence_loader, synthesis_loader
+from modules.synthesis_model import SynthesisModel
+from modules.composites_encoder import SynthesisEncoder
 from modules.perceptual_loss import VGG19LossNetwork
 from modules.synthesis_decoder import SynthesisDecoder
 from modules.synthesis_model import SynthesisModel
@@ -35,7 +34,7 @@ def test_perceptual_loss_network(config):
     img_encoder = VGG19LossNetwork(config).eval()
     print(get_n_params(img_encoder))
 
-    db = coco(config, 'train', '2017')
+    db = composites_coco(config, 'train', '2017')
     syn_loader = synthesis_loader(db)
     loader = DataLoader(syn_loader, batch_size=1, 
         shuffle=False, num_workers=config.num_workers)
@@ -53,7 +52,7 @@ def test_syn_encoder(config):
     img_encoder = SynthesisEncoder(config)
     print(get_n_params(img_encoder))
 
-    db = coco(config, 'train', '2017')
+    db = composites_coco(config, 'train', '2017')
     syn_loader = synthesis_loader(db)
     loader = DataLoader(syn_loader, batch_size=1, 
         shuffle=False, num_workers=config.num_workers)
@@ -73,7 +72,7 @@ def test_syn_decoder(config):
     print(get_n_params(img_encoder))
     print(get_n_params(img_decoder))
 
-    db = coco(config, 'train', '2017')
+    db = composites_coco(config, 'train', '2017')
     syn_loader = synthesis_loader(db)
     loader = DataLoader(syn_loader, batch_size=1, 
         shuffle=False, num_workers=config.num_workers)
@@ -92,7 +91,7 @@ def test_syn_model(config):
     synthesizer = SynthesisModel(config)
     print(get_n_params(synthesizer))
 
-    db = coco(config, 'train', '2017')
+    db = composites_coco(config, 'train', '2017')
     syn_loader = synthesis_loader(db)
     loader = DataLoader(syn_loader, batch_size=1, 
         shuffle=False, num_workers=config.num_workers)

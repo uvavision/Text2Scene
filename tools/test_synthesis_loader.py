@@ -7,16 +7,18 @@ import numpy as np
 import pickle, random
 import os.path as osp
 from time import time
-from config import get_config
 from copy import deepcopy
 from glob import glob
 import matplotlib.pyplot as plt
 from nltk.tokenize import word_tokenize
 from collections import OrderedDict
-from utils import *
 
-from datasets.coco import coco
-from datasets.coco_loader import synthesis_loader, proposal_loader
+from composites_utils import *
+from composites_config import get_config
+
+from datasets.composites_coco import composites_coco
+from datasets.composites_loader import synthesis_loader, proposal_loader
+
 import torch, torchtext
 from torch.utils.data import Dataset, DataLoader
 
@@ -24,7 +26,7 @@ from nntable import AllCategoriesTables
 
 
 def test_syn_dataloader(config):
-    db = coco(config, 'train', '2017')
+    db = composites_coco(config, 'train', '2017')
 
     syn_loader = synthesis_loader(db)
     output_dir = osp.join(config.model_dir, 'test_syn_dataloader')

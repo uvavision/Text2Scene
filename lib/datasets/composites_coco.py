@@ -438,7 +438,7 @@ class composites_coco(object):
         else:
             split = 'val'
         file_name = (str(index).zfill(12) + '.' + ext)
-        file_path = osp.join(self.root_dir, field, split, file_name)
+        file_path = osp.join(self.root_dir, field, split + self.year, file_name)
         # assert osp.exists(file_path), 'Path does not exist: {}'.format(file_path)
         return file_path
 
