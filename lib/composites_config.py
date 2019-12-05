@@ -106,6 +106,8 @@ parser.add_argument('--weighted_synthesis',  type=str2bool, default=False)
 # evaluation
 ##################################################################
 parser.add_argument('--pretrained', type=str, default=None)
+parser.add_argument('--composer_pretrained', type=str, default=None)
+parser.add_argument('--inpainter_pretrained', type=str, default=None)
 parser.add_argument('--for_visualization', type=str2bool, default=True)
 ##################################################################
 

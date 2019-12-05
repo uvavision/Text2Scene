@@ -486,28 +486,10 @@ class SynthesisEncoder(nn.Module):
         h, w = config.output_image_size
 
         # if self.cfg.use_color_volume:
-        #     if self.cfg.use_normalization:
-        #         self.block0 = nn.Sequential(
-        #             nn.Conv2d(3 * self.cfg.output_vocab_size, self.cfg.output_vocab_size,
-        #                 kernel_size=7, stride=1, padding=3, groups=self.cfg.output_vocab_size),
-        #             nn.LayerNorm([self.cfg.output_vocab_size, h, w]),
-        #             nn.LeakyReLU(0.2, inplace=True)
-        #         )
-        #     else:
-        #         self.block0 = nn.Sequential(
-        #             nn.Conv2d(3 * self.cfg.output_vocab_size, self.cfg.output_vocab_size,
-        #                 kernel_size=7, stride=1, padding=3, groups=self.cfg.output_vocab_size),
-        #             nn.LeakyReLU(0.2, inplace=True)
-        #         )
-        #     in_channels = config.output_vocab_size
+        #     in_channels = 3 * config.output_vocab_size
         # else:
         #     in_channels = config.output_vocab_size + 4
-
-        if self.cfg.use_color_volume:
-            in_channels = 3 * config.output_vocab_size
-        else:
-            in_channels = config.output_vocab_size + 4
-
+        in_channels = config.output_vocab_size + 4
 
         self.cfg = config
         self.block1 = nn.Sequential(self.make_layers(in_channels, [256, 256], config.use_normalization, [h,     w]))
@@ -541,20 +523,13 @@ class SynthesisEncoder(nn.Module):
 
     def forward(self, inputs):
 
-        if self.cfg.use_color_volume:
-            x0 = batch_color_volumn_preprocess(inputs, self.cfg.output_vocab_size)
-        else:
-            x0 = batch_onehot_volumn_preprocess(inputs, self.cfg.output_vocab_size)
-        x0 = (x0-128.0).permute(0,3,1,2)
-
-
-        h, w = self.cfg.output_image_size
-
         # if self.cfg.use_color_volume:
-        #     x = self.block0(x0)
+        #     x0 = batch_color_volumn_preprocess(inputs, self.cfg.output_vocab_size)
         # else:
-        #     x = x0
-
+        #     x0 = batch_onehot_volumn_preprocess(inputs, self.cfg.output_vocab_size)
+        x0 = batch_onehot_volumn_preprocess(inputs, self.cfg.output_vocab_size)
+        x0 = (x0-128.0).permute(0,3,1,2)
+        h, w = self.cfg.output_image_size
 
         x1 = self.block1(x0)
         x2 = self.block2(x1)

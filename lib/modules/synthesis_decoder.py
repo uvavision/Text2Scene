@@ -15,10 +15,11 @@ class SynthesisDecoder(nn.Module):
         self.cfg = config
 
         h, w = config.output_image_size
-        if config.use_color_volume:
-            in_channels = 3 * config.output_vocab_size 
-        else:
-            in_channels = config.output_vocab_size + 4
+        # if config.use_color_volume:
+        #     in_channels = 3 * config.output_vocab_size 
+        # else:
+        #     in_channels = config.output_vocab_size + 4
+        in_channels = config.output_vocab_size + 4
 
         self.block6 = nn.Sequential(self.make_layers(512 + in_channels,       [512, 512], config.use_normalization, [h//64, w//64]))
         self.block5 = nn.Sequential(self.make_layers(512 + 512 + in_channels, [512, 512], config.use_normalization, [h//32, w//32]))

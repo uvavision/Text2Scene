@@ -64,22 +64,22 @@ class simulator(object):
         return torch.from_numpy(outputs)
 
     def batch_redraw(self, return_sequence=False):
-        out_frames, out_noices, out_masks, out_labels, out_scenes = [], [], [], [], []
+        out_frames, out_noises, out_masks, out_labels, out_scenes = [], [], [], [], []
         for i in range(len(self.scenes)):
             predicted_scene = self.db.prediction_outputs_to_scene(self.scenes[i], self.nn_table)
             predicted_scene['patches'] = self.scenes[i]['out_patches']
-            frames, noices, masks, labels = self.render_predictions_as_output(predicted_scene, return_sequence)
+            frames, noises, masks, labels = self.render_predictions_as_output(predicted_scene, return_sequence)
             if not return_sequence:
                 frames = frames[None, ...]
-                noices = noices[None, ...]
+                noises = noises[None, ...]
                 masks  = masks[None, ...]
                 labels = labels[None, ...]
             out_frames.append(frames)
-            out_noices.append(noices)
+            out_noises.append(noises)
             out_masks.append(masks)
             out_labels.append(labels)
             out_scenes.append(predicted_scene)
-        return out_frames, out_noices, out_masks, out_labels, out_scenes
+        return out_frames, out_noises, out_masks, out_labels, out_scenes
 
     def render_predictions_as_output(self, scene, return_sequence):
         width  = scene['width']
@@ -94,40 +94,40 @@ class simulator(object):
             channel_dim = 4 + self.cfg.output_vocab_size
 
         frame = np.zeros((height, width, channel_dim))
-        noice = np.zeros((height, width, channel_dim))
+        noise = np.zeros((height, width, channel_dim))
         label = np.zeros((height, width), dtype=np.int32)
         mask = np.zeros((height, width), dtype=np.float32)
 
-        out_frames, out_noices, out_labels, out_masks = [], [], [], []
+        out_frames, out_noises, out_labels, out_masks = [], [], [], []
         for i in range(len(clses)):
             cls_ind = clses[i]
             xywh = boxes[i]
             patch = patches[i]
             xyxy = xywh_to_xyxy(xywh, width, height)
             if self.cfg.use_color_volume:
-                frame[:,:,3*cls_ind:3*(cls_ind+1)], mask, _, label, noice[:,:,3*cls_ind:3*(cls_ind+1)] = \
+                frame[:,:,3*cls_ind:3*(cls_ind+1)], mask, _, label, noise[:,:,3*cls_ind:3*(cls_ind+1)] = \
                     patch_compose_and_erose(frame[:,:,3*cls_ind:3*(cls_ind+1)], mask, label, \
-                        xyxy, patch, self.db, noice[:,:,3*cls_ind:3*(cls_ind+1)])
+                        xyxy, patch, self.db, noise[:,:,3*cls_ind:3*(cls_ind+1)])
             else:
-                frame[:,:,-3:], mask, _, label, noice[:,:,-3:] = \
-                    patch_compose_and_erose(frame[:,:,-3:], mask, label, xyxy, patch, self.db, noice[:,:,-3:])
+                frame[:,:,-3:], mask, _, label, noise[:,:,-3:] = \
+                    patch_compose_and_erose(frame[:,:,-3:], mask, label, xyxy, patch, self.db, noise[:,:,-3:])
                 frame[:,:,-4] = np.maximum(mask*255, frame[:,:,-4])
                 frame[:,:,cls_ind] = np.maximum(mask*255, frame[:,:,cls_ind])
             out_frames.append(frame.copy())
-            out_noices.append(noice.copy())
+            out_noises.append(noise.copy())
             out_labels.append(label.copy())
             out_masks.append(mask.copy())
 
         if len(clses) == 0:
             out_frames.append(frame.copy())
-            out_noices.append(noice.copy())
+            out_noises.append(noise.copy())
             out_labels.append(label.copy())
             out_masks.append(mask.copy())
 
         if return_sequence:
-            return np.stack(out_frames, 0), np.stack(out_noices, 0), np.stack(out_masks, 0), np.stack(out_labels, 0)
+            return np.stack(out_frames, 0), np.stack(out_noises, 0), np.stack(out_masks, 0), np.stack(out_labels, 0)
         else:
-            return out_frames[-1], out_noices[-1], out_masks[-1], out_labels[-1]
+            return out_frames[-1], out_noises[-1], out_masks[-1], out_labels[-1]
 
     def update_scene(self, scene, step_prediction):
         ##############################################################
