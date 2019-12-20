@@ -18,7 +18,7 @@ parser = argparse.ArgumentParser()
 # Data
 ##################################################################
 parser.add_argument('--input_image_size',  nargs='+', type=int, default=[128, 128])
-parser.add_argument('--output_image_size', nargs='+', type=int, default=[512, 512])
+parser.add_argument('--output_image_size', nargs='+', type=int, default=[256, 256])
 parser.add_argument('--input_patch_size',  nargs='+', type=int, default=[64, 64])
 parser.add_argument('--input_vocab_size', type=int, default=8552)
 parser.add_argument('--output_vocab_size', type=int, default=98)
