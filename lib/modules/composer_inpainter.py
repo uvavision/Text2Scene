@@ -139,6 +139,7 @@ class ComposerInpainter(object):
                 plt.axis('off')
             plt.subplot(4, 4, 16)
             plt.imshow(out)
+            plt.axis('off')
 
             out_path = osp.join(output_dir, '%09d.png'%i)
             fig.savefig(out_path, bbox_inches='tight')
