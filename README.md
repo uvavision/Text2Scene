@@ -47,10 +47,11 @@ Please note that, for layout generation, we use coco2017 splits. But for composi
 ```
 The scripts will take the example sentences in `Text2Scene/examples` as input. The step-by-step generation results will appear in `Text2Scene/logs`. Runing the scripts for the first time would be slow as it takes time to generate cache files (in `Text2Scene/data/caches`) for the datasets and download the GloVe data.
 
-- To run the composite demo, you need to download auxiliary data, including the image segment database and (optionally) the precomputed nearest neighbor tree. Be careful that the auxiliary data is around 30GB!!
+- To run the composite and inpainting demos, you need to download auxiliary data, including the image segment database and (optionally) the precomputed nearest neighbor tree. Be careful that the auxiliary data is around 30GB!!
 ```Shell
 ./experiments/scripts/fetch_aux.sh
 ./experiments/scripts/sample_composites.sh	 # Composites demo
+./experiments/scripts/sample_inpainted.sh	 # Inpainting demo
 ```
 
 Note that the demos will be run in CPU by default. To use GPU, simply add the `--cuda` flag in the scripts like:
