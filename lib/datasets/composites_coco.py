@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-import os, sys, cv2, cairo, random
+import os, cv2, random
 import numpy as np
 import os.path as osp
-from time import time
 from copy import deepcopy
 from glob import glob
 from collections import OrderedDict

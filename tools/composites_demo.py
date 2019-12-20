@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 
 import _init_paths
-import os, sys, cv2, json
-import math, PIL, cairo
+import cv2, random
 import numpy as np
-import pickle, random
 import os.path as osp
 from time import time
-from copy import deepcopy
-from glob import glob
 import matplotlib.pyplot as plt
 
 from composites_utils import *
@@ -18,7 +14,7 @@ from datasets.composites_coco import composites_coco
 from modules.puzzle_model import PuzzleModel
 from modules.puzzle_trainer import PuzzleTrainer
 
-import torch, torchtext
+import torch
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
@@ -27,7 +23,7 @@ from nntable import AllCategoriesTables
 
 def puzzle_model_inference_preparation(config):
     traindb = composites_coco(config, 'train', '2017')
-    testdb = composites_coco(config, 'test', '2017')
+    testdb  = composites_coco(config, 'test', '2017')
     trainer = PuzzleTrainer(traindb)
     t0 = time()
     trainer.dump_shape_vectors(traindb)
@@ -37,13 +33,12 @@ def puzzle_model_inference_preparation(config):
     all_tables = AllCategoriesTables(traindb)
     all_tables.build_nntables_for_all_categories(False)
     print("NN completes (time %.2fs)" % (time() - t0))
-    # trainer.sample(0, valdb, len(valdb), random_or_not=False)
 
 
 def puzzle_model_inference(config):
     traindb = composites_coco(config, 'train', '2017')
-    valdb = composites_coco(config, 'test', '2017')
-    auxdb = composites_coco(config, 'aux', '2017')
+    valdb   = composites_coco(config, 'test', '2017')
+    auxdb   = composites_coco(config, 'aux', '2017')
     trainer = PuzzleTrainer(traindb)
     t0 = time()
 
@@ -67,8 +62,8 @@ def puzzle_model_inference(config):
 def composites_demo(config):
     traindb = composites_coco(config, 'train', '2017')
     trainer = PuzzleTrainer(traindb)
-    t0 = time()
 
+    t0 = time()
     patch_dir_name = 'patch_feature_'+'with_bg' if config.use_patch_background else 'without_bg'
     if not osp.exists(osp.join(traindb.root_dir, patch_dir_name)):
         trainer.dump_shape_vectors(traindb)
