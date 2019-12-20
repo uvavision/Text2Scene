@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 
 import _init_paths
-import os, sys, cv2, json
-import math, PIL, cairo
+import cv2, random
 import numpy as np
-import pickle, random
 import os.path as osp
 from time import time
-from copy import deepcopy
-from glob import glob
 import matplotlib.pyplot as plt
 
 from composites_utils import *
@@ -17,14 +13,14 @@ from datasets.composites_coco import composites_coco
 
 from modules.composer_inpainter import ComposerInpainter
 
-import torch, torchtext
+import torch
 from torch.utils.data import Dataset
 from torch.utils.data import DataLoader
 
 from nntable import AllCategoriesTables
 
 
-def composites_demo(config):
+def inpainting_demo(config):
     traindb = composites_coco(config, 'train', '2017')
     trainer = ComposerInpainter(traindb)
     t0 = time()
@@ -52,4 +48,4 @@ if __name__ == '__main__':
         torch.cuda.manual_seed_all(config.seed)
     prepare_directories(config)
 
-    composites_demo(config)
+    inpainting_demo(config)
