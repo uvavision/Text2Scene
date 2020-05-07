@@ -214,6 +214,8 @@ class Vocab(object):
             vectors.append(v_th)
             self.word2vector[w] = v_np
         self.vectors = torch.stack(vectors, 0)
+        del self.glovec
+        self.glovec = None
 
     def load(self, path):
         with open(path, 'r') as fp:

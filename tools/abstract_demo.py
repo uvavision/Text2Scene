@@ -15,7 +15,7 @@ from abstract_config import get_config
 
 def abstract_demo(config):
     transformer = image_normalize('background')
-    train_db = abstract_scene(config, split='train', transform=transformer)   
+    train_db = abstract_scene(config, split='val', transform=transformer)   
     trainer = SupervisedTrainer(train_db)
     input_sentences = json_load('examples/abstract_samples.json')
     trainer.sample_demo(input_sentences)
