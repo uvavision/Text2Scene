@@ -555,6 +555,9 @@ def log_scores(infos, path):
     bigram_coord = infos.bigram_coord()
     log_info['bigram_coord'] = [np.mean(bigram_coord), np.std(bigram_coord), np.amin(bigram_coord), np.amax(bigram_coord)]
     
+    for k, v in log_info.items():
+        print(k, v)
+
     with open(path, 'w') as fp:
         json.dump(log_info, fp, indent=4, sort_keys=True)
 
