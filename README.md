@@ -68,8 +68,17 @@ You can run the following scripts to train the models:
 ```
 The composite image model will be trained using multiple GPUs by default. To use a single GPU, please remove the `--parallel` flag and modify the batch size using the `--batch_size` flag accordingly.
 
+## Evaluation
+You can run the following script to eval the Abstract Scene model:
+
+```Shell
+./experiments/scripts/eval_abstract.sh 		# Evaluate the abstract scene model
+```
+
+The script will be run in GPU by default.
+
 ## TODO
-I'm trying to also include the evaluation scripts and the generated images from the pretrained models to ease the evaluations.
+I'm trying to also include other evaluation scripts and the generated images from the pretrained models to ease the evaluations.
 
 
 ## Citing
