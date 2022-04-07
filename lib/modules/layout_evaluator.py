@@ -140,7 +140,7 @@ class scene_graph(object):
 class eval_info(object):
     def __init__(self, config, scores):
         self.cfg = config
-        self.scores = deepcopy(scores)
+        self.scores = deepcopy(scores).astype(np.float64)
 
     def unigram_F3(self):
         P = self.unigram_P(); R = self.unigram_R()

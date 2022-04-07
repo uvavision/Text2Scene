@@ -73,12 +73,10 @@ You can run the following script to eval the Abstract Scene model:
 
 ```Shell
 ./experiments/scripts/eval_abstract.sh 		# Evaluate the abstract scene model
+./experiments/scripts/eval_layout.sh 		# Evaluate the layout model
 ```
 
-The script will be run in GPU by default.
-
-## TODO
-I'm trying to also include other evaluation scripts and the generated images from the pretrained models to ease the evaluations.
+The scripts would be run in GPU by default.
 
 
 ## Citing
