@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AUX_URL=www.cs.virginia.edu/~ft3ex/data/text2scene/aux_data.zip
+AUX_URL=https://www.cs.rice.edu/~vo9/fuwen/text2scene/aux_data.zip
 
 echo "Downloading auxiliary data for composite image generation ..."
 wget $AUX_URL -O aux_data.zip
